@@ -7,6 +7,7 @@ namespace Accredify\Product\Application\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Accredify\Product\Application\Http\Requests\StoreProductRequest;
 use Accredify\Product\Application\Http\Requests\UpdateProductRequest;
+use Accredify\Product\Application\Http\Resources\Product as ProductResource;
 use Accredify\Product\Domain\Models\Product;
 
 class ProductController extends Controller
@@ -18,7 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return 'ProductController@index';
+        $products = Product::paginate(10);
+
+        return ProductResource::collection($products);
     }
 
     /**
