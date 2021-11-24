@@ -32,16 +32,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
-
-            Route::prefix('products')
-                ->middleware('api')
-                ->namespace('Accredify\Product\Application\Http\Controllers')
-                ->group(base_path('src/Product/routes.php'));
-
-            Route::prefix('orders')
-                ->middleware('api')
-                ->namespace('Accredify\Order\Application\Http\Controllers')
-                ->group(base_path('src/Order/routes.php'));
         });
     }
 
