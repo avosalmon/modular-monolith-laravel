@@ -17,7 +17,7 @@ class OrderServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
-        // $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/migrations');
 
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'order');
     }
