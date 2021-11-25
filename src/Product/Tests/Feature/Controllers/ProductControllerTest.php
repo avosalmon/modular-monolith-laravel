@@ -10,7 +10,7 @@ class ProductControllerTest extends TestCase
     /** @test */
     public function index_returns_paginated_response()
     {
-        Product::factory()->count(30)->create();
+        Product::factory(30)->create();
 
         $response = $this->getJson('/products?page=2')
             ->assertStatus(200)
