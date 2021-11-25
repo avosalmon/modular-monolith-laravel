@@ -11,10 +11,24 @@ use Accredify\Order\Domain\Models\Order;
 use Accredify\Payment\Domain\Contracts\PaymentServiceInterface;
 use Accredify\Product\Domain\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \Accredify\Product\Domain\Contracts\ProductRepositoryInterface  $productRepository
+     * @param  \Accredify\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
+     * @return void
+     */
+    public function __construct(
+        private ProductRepositoryInterface $productRepository,
+        private PaymentServiceInterface $paymentService
+    ) {
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,34 +45,28 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Accredify\Order\Application\Http\Requests\StoreOrderRequest  $request
-     * @param  \Accredify\Product\Domain\Contracts\ProductRepositoryInterface  $productRepository
-     * @param  \Accredify\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
      * @return \Illuminate\Http\Response
      */
     public function store(
         StoreOrderRequest $request,
-        ProductRepositoryInterface $productRepository,
-        PaymentServiceInterface $paymentService
     ) {
         $orderId = null;
-
         $validated = $request->validated();
+        $price = $this->productRepository->getPrice((int)$validated['product_id']);
 
-        $price = $productRepository->getPrice((int)$validated['product_id']);
-
-        DB::transaction(function () use ($validated, $price, $productRepository, $paymentService) {
+        DB::transaction(function () use (&$orderId, $validated, $price) {
             // 1. decrement stock via product module
-            $productRepository->decrementStock((int)$validated['product_id'], (int)$validated['quantity']);
+            $this->productRepository->decrementStock((int)$validated['product_id'], (int)$validated['quantity']);
 
-            // 2. create order
+            // 2. TODO: create order. Just setting dummy order id for now.
             $orderId = 1;
 
             // 3. make payment via payment module
             $amount = $price * (int)$validated['quantity'];
-            $paymentService->pay($orderId, $amount, $validated['payment_method']);
+            $this->paymentService->pay($orderId, $amount, $validated['payment_method']);
         });
 
-        return $orderId;
+        return response()->json(['order_id' => $orderId], Response::HTTP_CREATED);
     }
 
     /**
