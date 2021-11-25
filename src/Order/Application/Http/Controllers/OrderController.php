@@ -47,9 +47,8 @@ class OrderController extends Controller
      * @param  \Accredify\Order\Application\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(
-        StoreOrderRequest $request,
-    ) {
+    public function store(StoreOrderRequest $request)
+    {
         $orderId = null;
         $validated = $request->validated();
         $price = $this->productRepository->getPrice((int)$validated['product_id']);
