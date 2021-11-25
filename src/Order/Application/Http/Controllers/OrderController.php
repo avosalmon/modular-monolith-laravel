@@ -7,6 +7,7 @@ use Accredify\Order\Application\Http\Requests\UpdateOrderRequest;
 use Accredify\Order\Application\Http\Resources\Order as OrderResource;
 use Accredify\Order\Domain\Models\Order;
 use App\Http\Controllers\Controller;
+use App\Product\Domain\Contracts\ProductRepository;
 
 class OrderController extends Controller
 {
@@ -26,11 +27,21 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Accredify\Order\Application\Http\Requests\StoreOrderRequest  $request
+     * @param  \App\Product\Domain\Contracts\ProductRepository  $productRepository
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request, ProductRepository $productRepository)
     {
-        //
+        $validated = $request->validated();
+
+        // check product inventory
+        $product = $productRepository->findById($validated['product_id']);
+
+        // deduct product stock from inventory
+
+        // create order
+
+        // make payment
     }
 
     /**
