@@ -38,14 +38,13 @@ class PaymentService implements PaymentServiceInterface
      */
     private function strategy(string $paymentMethod): PaymentStrategy
     {
-        switch ($paymentMethod) {
-            // TODO: define payment methods as enum
-            case 'credit-card':
-                return new CreditCard;
-            case 'paypal':
-                return new Paypal;
-            default:
-                throw new InvalidPaymentMethodException($paymentMethod);
-        }
+        // TODO: define payment methods as enum
+        $strategy = match ($paymentMethod) {
+            'credit-card' => new CreditCard,
+            'paypal' => new Paypal,
+            default => throw new InvalidPaymentMethodException($paymentMethod)
+        };
+
+        return $strategy;
     }
 }
