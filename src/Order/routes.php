@@ -6,5 +6,5 @@ Route::prefix('orders')
     ->middleware('api')
     ->namespace('Accredify\Order\Application\Http\Controllers')
     ->group(function () {
-        Route::get('/', fn () => 'orders');
+        Route::apiResource('/', OrderController::class)->except('destroy');
     });
