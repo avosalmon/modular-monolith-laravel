@@ -1,13 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Accredify\Order\Application\Http\Controllers;
 
 use Accredify\Order\Application\Http\Requests\StoreOrderRequest;
 use Accredify\Order\Application\Http\Requests\UpdateOrderRequest;
 use Accredify\Order\Application\Http\Resources\Order as OrderResource;
 use Accredify\Order\Domain\Models\Order;
+use Accredify\Payment\Domain\Contracts\PaymentServiceInterface;
+use Accredify\Product\Domain\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Product\Domain\Contracts\ProductRepository;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -27,21 +31,34 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Accredify\Order\Application\Http\Requests\StoreOrderRequest  $request
-     * @param  \App\Product\Domain\Contracts\ProductRepository  $productRepository
+     * @param  \Accredify\Product\Domain\Contracts\ProductRepositoryInterface  $productRepository
+     * @param  \Accredify\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request, ProductRepository $productRepository)
-    {
+    public function store(
+        StoreOrderRequest $request,
+        ProductRepositoryInterface $productRepository,
+        PaymentServiceInterface $paymentService
+    ) {
+        $orderId = null;
+
         $validated = $request->validated();
 
-        // check product inventory
-        $product = $productRepository->findById($validated['product_id']);
+        $price = $productRepository->getPrice((int)$validated['product_id']);
 
-        // deduct product stock from inventory
+        DB::transaction(function () use ($validated, $price, $productRepository, $paymentService) {
+            // 1. decrement stock via product module
+            $productRepository->decrementStock((int)$validated['product_id'], (int)$validated['quantity']);
 
-        // create order
+            // 2. create order
+            $orderId = 1;
 
-        // make payment
+            // 3. make payment via payment module
+            $amount = $price * (int)$validated['quantity'];
+            $paymentService->pay($orderId, $amount, $validated['payment_method']);
+        });
+
+        return $orderId;
     }
 
     /**
@@ -52,7 +69,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return new OrderResource($order);
     }
 
     /**

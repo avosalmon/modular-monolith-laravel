@@ -3,6 +3,7 @@
 namespace Accredify\Order\Application\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreOrderRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,9 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_id' => ['required', 'integer'],
+            'quantity' => ['required', 'integer'],
+            'payment_method' => ['required', Rule::in(['credit-card', 'paypal', 'bank-transfer'])],
         ];
     }
 }

@@ -177,6 +177,7 @@ return [
          * Custom Service Providers
          */
         \Accredify\Order\OrderServiceProvider::class,
+        \Accredify\Payment\PaymentServiceProvider::class,
         \Accredify\Product\ProductServiceProvider::class,
     ],
 
