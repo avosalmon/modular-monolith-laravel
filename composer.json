@@ -23,7 +23,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Accredify\\": "src/",
+            "Laracon\\": "src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

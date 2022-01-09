@@ -1,6 +1,6 @@
 <?php
 
-namespace Accredify\Order\Application\Http\Resources;
+namespace Laracon\Order\Application\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

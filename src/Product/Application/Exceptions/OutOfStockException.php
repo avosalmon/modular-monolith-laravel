@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Product\Application\Exceptions;
+namespace Laracon\Product\Application\Exceptions;
 
 use Exception;
 

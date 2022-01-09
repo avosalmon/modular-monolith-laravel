@@ -1,8 +1,8 @@
 <?php
 
-namespace Accredify\Product\Domain\Contracts;
+namespace Laracon\Product\Domain\Contracts;
 
-use Accredify\Product\Domain\Contracts\DTOs\ProductInventory;
+use Laracon\Product\Domain\Contracts\DTOs\ProductInventory;
 
 interface ProductRepositoryInterface
 {
@@ -20,7 +20,7 @@ interface ProductRepositoryInterface
      * @param integer $id
      * @param integer $quantity
      * @return void
-     * @throws \Accredify\Product\Application\Exceptions\OutOfStockException
+     * @throws \Laracon\Product\Application\Exceptions\OutOfStockException
      */
     public function decrementStock(int $id, int $quantity): void;
 }

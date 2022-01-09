@@ -1,9 +1,9 @@
 <?php
 
-namespace Accredify\Product\Tests\Unit\Infrastructure\Repositories;
+namespace Laracon\Product\Tests\Unit\Infrastructure\Repositories;
 
-use Accredify\Product\Domain\Models\Product;
-use Accredify\Product\Infrastructure\Repositories\ProductRepository;
+use Laracon\Product\Domain\Models\Product;
+use Laracon\Product\Infrastructure\Repositories\ProductRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 

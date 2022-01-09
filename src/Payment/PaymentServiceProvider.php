@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Payment;
+namespace Laracon\Payment;
 
-use Accredify\Payment\Domain\Contracts\PaymentServiceInterface;
-use Accredify\Payment\Domain\Services\PaymentService;
+use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
+use Laracon\Payment\Domain\Services\PaymentService;
 use Illuminate\Support\ServiceProvider;
 
 class PaymentServiceProvider extends ServiceProvider

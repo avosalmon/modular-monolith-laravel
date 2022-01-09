@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Product;
+namespace Laracon\Product;
 
-use Accredify\Product\Domain\Contracts\ProductRepositoryInterface;
-use Accredify\Product\Infrastructure\Repositories\ProductRepository;
+use Laracon\Product\Domain\Contracts\ProductRepositoryInterface;
+use Laracon\Product\Infrastructure\Repositories\ProductRepository;
 use Illuminate\Support\ServiceProvider;
 
 class ProductServiceProvider extends ServiceProvider

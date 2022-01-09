@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Order\Infrastructure\Database\Factories;
+namespace Laracon\Order\Infrastructure\Database\Factories;
 
-use Accredify\Order\Domain\Models\Order;
+use Laracon\Order\Domain\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory

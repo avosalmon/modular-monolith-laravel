@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Product\Infrastructure\Database\Factories;
+namespace Laracon\Product\Infrastructure\Database\Factories;
 
-use Accredify\Product\Domain\Models\Product;
+use Laracon\Product\Domain\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory

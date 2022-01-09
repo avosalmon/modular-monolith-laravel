@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Product\Domain\Models;
+namespace Laracon\Product\Domain\Models;
 
-use Accredify\Product\Infrastructure\Database\Factories\ProductFactory;
+use Laracon\Product\Infrastructure\Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Order;
+namespace Laracon\Order;
 
 use Illuminate\Support\ServiceProvider;
 

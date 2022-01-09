@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Product\Infrastructure\Repositories;
+namespace Laracon\Product\Infrastructure\Repositories;
 
-use Accredify\Product\Application\Exceptions\InactiveProductException;
-use Accredify\Product\Application\Exceptions\OutOfStockException;
-use Accredify\Product\Domain\Models\Product;
-use Accredify\Product\Domain\Contracts\ProductRepositoryInterface;
+use Laracon\Product\Application\Exceptions\InactiveProductException;
+use Laracon\Product\Application\Exceptions\OutOfStockException;
+use Laracon\Product\Domain\Models\Product;
+use Laracon\Product\Domain\Contracts\ProductRepositoryInterface;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -28,8 +28,8 @@ class ProductRepository implements ProductRepositoryInterface
      * @param integer $id
      * @param integer $quantity
      * @return void
-     * @throws \Accredify\Product\Application\Exceptions\OutOfStockException
-     * @throws \Accredify\Product\Application\Exceptions\InactiveProductException
+     * @throws \Laracon\Product\Application\Exceptions\OutOfStockException
+     * @throws \Laracon\Product\Application\Exceptions\InactiveProductException
      */
     public function decrementStock(int $id, int $quantity): void
     {

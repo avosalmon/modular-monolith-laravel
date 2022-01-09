@@ -1,6 +1,6 @@
 <?php
 
-namespace Accredify\Order\Application\Http\Requests;
+namespace Laracon\Order\Application\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

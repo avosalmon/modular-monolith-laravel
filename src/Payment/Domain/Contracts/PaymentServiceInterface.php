@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Payment\Domain\Contracts;
+namespace Laracon\Payment\Domain\Contracts;
 
 interface PaymentServiceInterface
 {
@@ -13,8 +13,8 @@ interface PaymentServiceInterface
      * @param int  $amount
      * @param string  $paymentMethod
      * @return void
-     * @throws \Accredify\Payment\Application\Exceptions\PaymentException
-     * @throws \Accredify\Payment\Application\Exceptions\InvalidPaymentMethodException
+     * @throws \Laracon\Payment\Application\Exceptions\PaymentException
+     * @throws \Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException
      */
     public function pay(int $orderId, int $amount, string $paymentMethod): void;
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Payment\Domain\Contracts;
+namespace Laracon\Payment\Domain\Contracts;
 
 interface PaymentStrategy
 {
@@ -11,7 +11,7 @@ interface PaymentStrategy
      *
      * @param float $amount
      * @return string
-     * @throws \Accredify\Payment\Application\Exceptions\PaymentException
+     * @throws \Laracon\Payment\Application\Exceptions\PaymentException
      */
     public function charge(float $amount): string;
 }

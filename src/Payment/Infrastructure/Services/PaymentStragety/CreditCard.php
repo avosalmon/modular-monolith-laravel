@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Payment\Infrastructure\Services\PaymentStragety;
+namespace Laracon\Payment\Infrastructure\Services\PaymentStragety;
 
-use Accredify\Payment\Domain\Contracts\PaymentStrategy;
+use Laracon\Payment\Domain\Contracts\PaymentStrategy;
 
 class CreditCard implements PaymentStrategy
 {

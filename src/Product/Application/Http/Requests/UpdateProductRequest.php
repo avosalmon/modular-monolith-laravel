@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Product\Application\Http\Requests;
+namespace Laracon\Product\Application\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

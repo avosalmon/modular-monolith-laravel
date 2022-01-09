@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Order\Application\Http\Controllers;
+namespace Laracon\Order\Application\Http\Controllers;
 
-use Accredify\Order\Application\Http\Requests\StoreOrderRequest;
-use Accredify\Order\Application\Http\Requests\UpdateOrderRequest;
-use Accredify\Order\Application\Http\Resources\Order as OrderResource;
-use Accredify\Order\Domain\Models\Order;
-use Accredify\Payment\Domain\Contracts\PaymentServiceInterface;
-use Accredify\Product\Domain\Contracts\ProductRepositoryInterface;
+use Laracon\Order\Application\Http\Requests\StoreOrderRequest;
+use Laracon\Order\Application\Http\Requests\UpdateOrderRequest;
+use Laracon\Order\Application\Http\Resources\Order as OrderResource;
+use Laracon\Order\Domain\Models\Order;
+use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
+use Laracon\Product\Domain\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +19,8 @@ class OrderController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Accredify\Product\Domain\Contracts\ProductRepositoryInterface  $productRepository
-     * @param  \Accredify\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
+     * @param  \Laracon\Product\Domain\Contracts\ProductRepositoryInterface  $productRepository
+     * @param  \Laracon\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
      * @return void
      */
     public function __construct(
@@ -44,7 +44,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Accredify\Order\Application\Http\Requests\StoreOrderRequest  $request
+     * @param  \Laracon\Order\Application\Http\Requests\StoreOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreOrderRequest $request)
@@ -71,7 +71,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Accredify\Order\Domain\Models\Order  $order
+     * @param  \Laracon\Order\Domain\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
@@ -82,8 +82,8 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Accredify\Order\Application\Http\Requests\UpdateOrderRequest  $request
-     * @param  \Accredify\Order\Domain\Models\Order  $order
+     * @param  \Laracon\Order\Application\Http\Requests\UpdateOrderRequest  $request
+     * @param  \Laracon\Order\Domain\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateOrderRequest $request, Order $order)

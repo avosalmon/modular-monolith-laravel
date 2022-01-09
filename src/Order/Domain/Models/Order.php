@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Order\Domain\Models;
+namespace Laracon\Order\Domain\Models;
 
 use App\Models\User;
-use Accredify\Order\Infrastructure\Database\Factories\OrderFactory;
+use Laracon\Order\Infrastructure\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

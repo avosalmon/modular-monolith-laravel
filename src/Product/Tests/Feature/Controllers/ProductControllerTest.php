@@ -1,8 +1,8 @@
 <?php
 
-namespace Accredify\Product\Tests\Feature\Controllers;
+namespace Laracon\Product\Tests\Feature\Controllers;
 
-use Accredify\Product\Domain\Models\Product;
+use Laracon\Product\Domain\Models\Product;
 use Tests\TestCase;
 
 class ProductControllerTest extends TestCase

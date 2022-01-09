@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Accredify\Payment\Domain\Services;
+namespace Laracon\Payment\Domain\Services;
 
-use Accredify\Payment\Application\Exceptions\InvalidPaymentMethodException;
-use Accredify\Payment\Domain\Contracts\PaymentServiceInterface;
-use Accredify\Payment\Domain\Contracts\PaymentStrategy;
-use Accredify\Payment\Infrastructure\Services\PaymentStragety\CreditCard;
-use Accredify\Payment\Infrastructure\Services\PaymentStragety\Paypal;
+use Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException;
+use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
+use Laracon\Payment\Domain\Contracts\PaymentStrategy;
+use Laracon\Payment\Infrastructure\Services\PaymentStragety\CreditCard;
+use Laracon\Payment\Infrastructure\Services\PaymentStragety\Paypal;
 
 class PaymentService implements PaymentServiceInterface
 {
@@ -19,8 +19,8 @@ class PaymentService implements PaymentServiceInterface
      * @param int  $amount
      * @param string  $paymentMethod
      * @return void
-     * @throws \Accredify\Payment\Application\Exceptions\PaymentException
-     * @throws \Accredify\Payment\Application\Exceptions\InvalidPaymentMethodException
+     * @throws \Laracon\Payment\Application\Exceptions\PaymentException
+     * @throws \Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException
      */
     public function pay(int $orderId, int $amount, string $paymentMethod): void
     {
@@ -33,8 +33,8 @@ class PaymentService implements PaymentServiceInterface
      * Get the payment strategy.
      *
      * @param string  $paymentMethod
-     * @return \Accredify\Payment\Domain\Contracts\PaymentStrategy
-     * @throws \Accredify\Payment\Application\Exceptions\InvalidPaymentMethodException
+     * @return \Laracon\Payment\Domain\Contracts\PaymentStrategy
+     * @throws \Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException
      */
     private function strategy(string $paymentMethod): PaymentStrategy
     {

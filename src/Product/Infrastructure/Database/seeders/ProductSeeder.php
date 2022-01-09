@@ -1,8 +1,8 @@
 <?php
 
-namespace Accredify\Product\Infrastructure\Database\Seeders;
+namespace Laracon\Product\Infrastructure\Database\Seeders;
 
-use Accredify\Product\Domain\Models\Product;
+use Laracon\Product\Domain\Models\Product;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder

@@ -176,9 +176,9 @@ return [
         /*
          * Custom Service Providers
          */
-        \Accredify\Order\OrderServiceProvider::class,
-        \Accredify\Payment\PaymentServiceProvider::class,
-        \Accredify\Product\ProductServiceProvider::class,
+        \Laracon\Order\OrderServiceProvider::class,
+        \Laracon\Payment\PaymentServiceProvider::class,
+        \Laracon\Product\ProductServiceProvider::class,
     ],
 
     /*
