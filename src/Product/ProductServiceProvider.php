@@ -28,7 +28,7 @@ class ProductServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
-        $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
 
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'product');
     }
