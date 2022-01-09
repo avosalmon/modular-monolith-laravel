@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('orders')
+Route::prefix('order-module')
     ->middleware('api')
     ->namespace('Laracon\Order\Application\Http\Controllers')
     ->group(function () {
-        Route::apiResource('/', OrderController::class)->except('destroy');
+        Route::apiResource('orders/', OrderController::class)->except('destroy');
     });
