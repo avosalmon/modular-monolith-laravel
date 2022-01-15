@@ -178,7 +178,7 @@ return [
          */
         \Laracon\Order\OrderServiceProvider::class,
         \Laracon\Payment\PaymentServiceProvider::class,
-        \Laracon\Product\ProductServiceProvider::class,
+        \Laracon\Inventory\ProductServiceProvider::class,
     ],
 
     /*

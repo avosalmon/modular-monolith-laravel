@@ -9,7 +9,7 @@ use Laracon\Order\Application\Http\Requests\UpdateOrderRequest;
 use Laracon\Order\Application\Http\Resources\Order as OrderResource;
 use Laracon\Order\Domain\Models\Order;
 use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
-use Laracon\Product\Domain\Contracts\ProductRepositoryInterface;
+use Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +19,7 @@ class OrderController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Laracon\Product\Domain\Contracts\ProductRepositoryInterface  $productRepository
+     * @param  \Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface  $productRepository
      * @param  \Laracon\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
      * @return void
      */
@@ -77,17 +77,5 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return new OrderResource($order);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Laracon\Order\Application\Http\Requests\UpdateOrderRequest  $request
-     * @param  \Laracon\Order\Domain\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Order $order)
-    {
-        //
     }
 }
