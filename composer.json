@@ -39,6 +39,9 @@
         }
     },
     "scripts": {
+        "test": [
+            "vendor/bin/pest"
+        ],
         "post-install-cmd": [
             "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:generate",
             "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:meta",
