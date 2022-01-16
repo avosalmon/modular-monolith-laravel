@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Laracon\Order\Application\Http\Controllers;
 
 use Laracon\Order\Application\Http\Requests\StoreOrderRequest;
-use Laracon\Order\Application\Http\Requests\UpdateOrderRequest;
 use Laracon\Order\Application\Http\Resources\Order as OrderResource;
 use Laracon\Order\Domain\Models\Order;
 use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
