@@ -178,8 +178,8 @@ return [
          */
         \Laracon\Order\OrderServiceProvider::class,
         \Laracon\Payment\PaymentServiceProvider::class,
-        \Laracon\Inventory\ProductServiceProvider::class,
-        \Laracon\Inventory\ShippingServiceProvider::class,
+        \Laracon\Inventory\InventoryServiceProvider::class,
+        \Laracon\Shipping\ShippingServiceProvider::class,
     ],
 
     /*

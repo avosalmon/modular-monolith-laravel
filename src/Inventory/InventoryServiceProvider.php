@@ -8,7 +8,7 @@ use Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface;
 use Laracon\Inventory\Infrastructure\Repositories\ProductRepository;
 use Illuminate\Support\ServiceProvider;
 
-class ProductServiceProvider extends ServiceProvider
+class InventoryServiceProvider extends ServiceProvider
 {
     /**
      * All of the container bindings that should be registered.
@@ -30,6 +30,6 @@ class ProductServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'product');
+        // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'inventory');
     }
 }
