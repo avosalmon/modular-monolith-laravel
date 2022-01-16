@@ -14,7 +14,7 @@ class AddShippingAddressIdToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('shipping_address_id');
+            $table->foreignId('shipping_address_id')->after('user_id');
         });
     }
 
