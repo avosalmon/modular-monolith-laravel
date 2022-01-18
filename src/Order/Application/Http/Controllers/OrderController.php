@@ -11,9 +11,12 @@ use Laracon\Payment\Contracts\PaymentService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Domain\Models\CartItem;
-use Laracon\Order\Domain\Models\ShoppingCart;
+use Laracon\Order\Domain\Models\Cart;
+
+use function Psy\debug;
 
 class OrderController extends Controller
 {
@@ -38,10 +41,10 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         $order = null;
-        $cart = ShoppingCart::findOrFail($request->cart_id);
+        $cart = Cart::findOrFail($request->cart_id);
 
         try {
-            DB::transaction(function () use ($cart, $request) {
+            DB::transaction(function () use (&$order, $cart, $request) {
                 $order = new Order([
                     'user_id' => $request->user()->id,
                     'shipping_address_id' => $request->shipping_address_id,
@@ -62,7 +65,10 @@ class OrderController extends Controller
                 );
             });
         } catch (\Throwable $th) {
-            // return error response
+            Log::debug($th->getMessage());
+            return response()->json([
+                'message' => 'An error occurred while processing your order.',
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         return new OrderResource($order);

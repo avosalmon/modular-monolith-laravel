@@ -6,10 +6,10 @@ namespace Laracon\Order\Domain\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Laracon\Order\Infrastructure\Database\Factories\CartItemFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laracon\Order\Infrastructure\Database\Factories\CartFactory;
 
-class CartItem extends Model
+class Cart extends Model
 {
     use HasFactory;
 
@@ -20,11 +20,11 @@ class CartItem extends Model
      */
     protected static function newFactory()
     {
-        return CartItemFactory::new();
+        return CartFactory::new();
     }
 
-    public function cart(): BelongsTo
+    public function cartItems(): HasMany
     {
-        return $this->belongsTo(Cart::class);
+        return $this->hasMany(CartItem::class);
     }
 }
