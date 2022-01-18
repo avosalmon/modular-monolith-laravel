@@ -25,7 +25,7 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'cart_id' => ['required', 'integer'],
+            'cart_id' => ['required', 'integer', 'exists:carts,id'],
             'shipping_address_id' => ['required', 'integer'],
             'payment_method' => ['required', Rule::in(['credit-card', 'paypal', 'bank-transfer'])],
         ];
