@@ -13,6 +13,7 @@ class Paypal implements PaymentStrategy
      *
      * @param int $amount
      * @return string
+     * @throws \Laracon\Payment\Domain\Exceptions\PaymentException
      */
     public function charge(int $amount): string
     {

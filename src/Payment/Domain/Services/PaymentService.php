@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laracon\Payment\Domain\Services;
 
-use Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException;
+use Laracon\Payment\Domain\Exceptions\InvalidPaymentMethodException;
 use Laracon\Payment\Domain\Contracts\{PaymentServiceInterface, PaymentStrategy};
 use Laracon\Payment\Infrastructure\Services\PaymentStragety\{CreditCard, Paypal};
 
@@ -17,8 +17,8 @@ class PaymentService implements PaymentServiceInterface
      * @param int  $amount
      * @param string  $paymentMethod
      * @return void
-     * @throws \Laracon\Payment\Application\Exceptions\PaymentException
-     * @throws \Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException
+     * @throws \Laracon\Payment\Domain\Exceptions\PaymentException
+     * @throws \Laracon\Payment\Domain\Exceptions\InvalidPaymentMethodException
      */
     public function pay(int $orderId, int $amount, string $paymentMethod): void
     {
@@ -32,7 +32,7 @@ class PaymentService implements PaymentServiceInterface
      *
      * @param string  $paymentMethod
      * @return \Laracon\Payment\Domain\Contracts\PaymentStrategy
-     * @throws \Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException
+     * @throws \Laracon\Payment\Domain\Exceptions\InvalidPaymentMethodException
      */
     private function strategy(string $paymentMethod): PaymentStrategy
     {

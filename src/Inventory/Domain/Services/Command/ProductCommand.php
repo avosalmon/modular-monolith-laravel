@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Laracon\Inventory\Domain\Services\Command;
 
 use Laracon\Inventory\Domain\Models\Product;
-use Laracon\Inventory\Application\Exceptions\OutOfStockException;
-use Laracon\Inventory\Application\Exceptions\InactiveProductException;
+use Laracon\Inventory\Domain\Exceptions\{
+    InactiveProductException,
+    OutOfStockException,
+    ProductNotFoundException
+};
 use Laracon\Inventory\Domain\Contracts\Command\ProductCommand as ProductCommandContract;
-use Laracon\Inventory\Domain\Exceptions\ProductNotFoundException;
 
 class ProductCommand implements ProductCommandContract
 {
