@@ -1,32 +1,26 @@
 <?php
 
-namespace Laracon\Inventory\Tests\Feature\Controllers;
-
+use Illuminate\Testing\Fluent\AssertableJson;
 use Laracon\Inventory\Domain\Models\Product;
-use Tests\TestCase;
 
-class ProductControllerTest extends TestCase
-{
-    /** @test */
-    public function index_returns_paginated_response()
-    {
-        Product::factory(30)->create();
+use function Pest\Laravel\getJson;
 
-        $response = $this->getJson('/products?page=2')
-            ->assertStatus(200)
-            ->assertJsonCount(10, 'data')
-            ->assertJsonStructure([
-                'data',
-                'links',
-                'meta'
-            ])->decodeResponseJson();
+uses(Tests\TestCase::class);
 
-        $meta = $response['meta'];
-        $this->assertEquals(10, $meta['per_page']);
-        $this->assertEquals(2, $meta['current_page']);
-        $this->assertEquals(3, $meta['last_page']);
-        $this->assertEquals(11, $meta['from']);
-        $this->assertEquals(20, $meta['to']);
-        $this->assertEquals(30, $meta['total']);
-    }
-}
+test('index returns paginated response', function () {
+    Product::factory(30)->create();
+
+    getJson('/inventory-module/products?page=2')
+        ->assertOk()
+        ->assertJson(fn (AssertableJson $json) =>
+            $json->has('data', 10)
+                ->has('links')
+                ->has('meta')
+                ->where('meta.per_page', 10)
+                ->where('meta.current_page', 2)
+                ->where('meta.last_page', 3)
+                ->where('meta.from', 11)
+                ->where('meta.to', 20)
+                ->where('meta.total', 30)
+        );
+});
