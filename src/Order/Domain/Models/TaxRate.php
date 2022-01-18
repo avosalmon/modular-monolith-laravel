@@ -17,4 +17,19 @@ class TaxRate extends Model
         'start_at' => 'datetime',
         'end_at' => 'datetime',
     ];
+
+    public static function current(): self
+    {
+        $now = now();
+
+        $rate = self::where('start_at', '<=', $now)
+            ->where('end_at', '>=', $now)
+            ->first();
+
+        if (!$rate) {
+            // throw exception
+        }
+
+        return $rate;
+    }
 }
