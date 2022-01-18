@@ -8,12 +8,10 @@ use Laracon\Order\Application\Http\Requests\StoreOrderRequest;
 use Laracon\Order\Application\Http\Resources\Order as OrderResource;
 use Laracon\Order\Domain\Models\Order;
 use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
-use Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Laracon\Inventory\Domain\Contracts\Command\ProductCommand;
-use Laracon\Inventory\Domain\Contracts\Query\ProductQuery;
+use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Domain\Models\CartItem;
 use Laracon\Order\Domain\Models\ShoppingCart;
 
@@ -22,13 +20,12 @@ class OrderController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface  $productRepository
+     * @param  \Laracon\Inventory\Contracts\ProductService  $productService
      * @param  \Laracon\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
      * @return void
      */
     public function __construct(
-        private ProductQuery $productQuery,
-        private ProductCommand $productCommand,
+        private ProductService $productService,
         private PaymentServiceInterface $paymentService
     ) {}
 
@@ -51,8 +48,8 @@ class OrderController extends Controller
                 ]);
 
                 $cart->cartItems()->each(function (CartItem $cartItem) use ($order) {
-                    $this->productCommand->decrementStock($cartItem->product_id, $cartItem->quantity);
-                    $product = $this->productQuery->getProductById($cartItem->product_id);
+                    $this->productService->decrementStock($cartItem->product_id, $cartItem->quantity);
+                    $product = $this->productService->getProductById($cartItem->product_id);
                     $order->addOrderLine($product, $cartItem->quantity);
                 });
 

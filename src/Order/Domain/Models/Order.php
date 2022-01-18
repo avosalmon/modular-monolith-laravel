@@ -8,7 +8,7 @@ use Laracon\Order\Infrastructure\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laracon\Inventory\Domain\DataTransferObjects\Product;
+use Laracon\Inventory\Contracts\DataTransferObjects\Product;
 
 class Order extends Model
 {

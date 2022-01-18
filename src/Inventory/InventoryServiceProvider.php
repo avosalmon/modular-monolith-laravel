@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Laracon\Inventory;
 
-use Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface;
-use Laracon\Inventory\Infrastructure\Repositories\ProductRepository;
 use Illuminate\Support\ServiceProvider;
+use Laracon\Inventory\Contracts\ProductService as ProductServiceContract;
+use Laracon\Inventory\Infrastructure\Services\ProductService;
 
 class InventoryServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,7 @@ class InventoryServiceProvider extends ServiceProvider
      * @var array
      */
     public $bindings = [
-        ProductRepositoryInterface::class => ProductRepository::class,
+        ProductServiceContract::class => ProductService::class,
     ];
 
     /**
