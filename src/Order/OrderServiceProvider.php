@@ -21,4 +21,14 @@ class OrderServiceProvider extends ServiceProvider
 
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'order');
     }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->register(EventServiceProvider::class);
+    }
 }
