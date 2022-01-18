@@ -41,3 +41,9 @@ sail artisan migrate:fresh --seed
 ```
 
 Now you can access the app via http://localhost.
+
+## Running tests
+
+```sh
+sail composer test
+```
