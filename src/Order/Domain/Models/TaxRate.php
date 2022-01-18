@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laracon\Order\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracon\Order\Domain\Exceptions\TaxRateNotFoundException;
 
 class TaxRate extends Model
 {
@@ -27,7 +28,7 @@ class TaxRate extends Model
             ->first();
 
         if (!$rate) {
-            // throw exception
+            throw new TaxRateNotFoundException();
         }
 
         return $rate;

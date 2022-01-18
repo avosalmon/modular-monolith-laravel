@@ -8,10 +8,13 @@ use Laracon\Order\Infrastructure\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laracon\Inventory\Domain\DataTransferObjects\Product;
 
 class Order extends Model
 {
     use HasFactory;
+
+    protected $orderLines = [];
 
     /**
      * Create a new factory instance for the model.
@@ -31,5 +34,34 @@ class Order extends Model
     public function orderHistories(): HasMany
     {
         return $this->hasMany(OrderHistory::class);
+    }
+
+    public function addOrderLine(Product $product, int $quantity): void
+    {
+        $orderLine = new OrderLine([
+            'product_id' => $product->name,
+            'product_name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $quantity,
+        ]);
+
+        $this->orderLines[] = $orderLine;
+    }
+
+    public function checkout(): void
+    {
+        if (empty($this->orderLines)) {
+            // throw exception
+        }
+
+        $this->amount = collect($this->orderLines)->sum(fn (OrderLine $orderLine) =>
+            $orderLine->subtotal()
+        );
+        $this->tax = $this->amount * TaxRate::current()->rate;
+        $this->total_amount = $this->amount + $this->tax;
+
+        $this->save();
+        $this->orderLines()->saveMany($this->orderLines);
+        $this->refresh();
     }
 }

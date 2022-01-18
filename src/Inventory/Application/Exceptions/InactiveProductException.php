@@ -8,9 +8,7 @@ use Exception;
 
 class InactiveProductException extends Exception
 {
-    public function __construct(private int $productId)
-    {
-    }
+    public function __construct(private int $productId) {}
 
     /**
      * Render the exception into an HTTP response.

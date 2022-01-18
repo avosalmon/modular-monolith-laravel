@@ -12,6 +12,10 @@ use Laracon\Inventory\Domain\Contracts\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Laracon\Inventory\Domain\Contracts\Command\ProductCommand;
+use Laracon\Inventory\Domain\Contracts\Query\ProductQuery;
+use Laracon\Order\Domain\Models\CartItem;
+use Laracon\Order\Domain\Models\ShoppingCart;
 
 class OrderController extends Controller
 {
@@ -23,22 +27,10 @@ class OrderController extends Controller
      * @return void
      */
     public function __construct(
-        private ProductRepositoryInterface $productRepository,
+        private ProductQuery $productQuery,
+        private ProductCommand $productCommand,
         private PaymentServiceInterface $paymentService
-    ) {
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $orders = Order::paginate(10);
-
-        return OrderResource::collection($orders);
-    }
+    ) {}
 
     /**
      * Store a newly created resource in storage.
@@ -48,23 +40,35 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $orderId = null;
-        $validated = $request->validated();
-        $price = $this->productRepository->getPrice((int)$validated['product_id']);
+        $order = null;
+        $cart = ShoppingCart::findOrFail($request->cart_id);
 
-        DB::transaction(function () use (&$orderId, $validated, $price) {
-            // 1. decrement stock via product module
-            $this->productRepository->decrementStock((int)$validated['product_id'], (int)$validated['quantity']);
+        try {
+            DB::transaction(function () use ($cart, $request) {
+                $order = new Order([
+                    'user_id' => $request->user()->id,
+                    'shipping_address_id' => $request->shipping_address_id,
+                ]);
 
-            // 2. TODO: create order. Just setting dummy order id for now.
-            $orderId = 1;
+                $cart->cartItems()->each(function (CartItem $cartItem) use ($order) {
+                    $this->productCommand->decrementStock($cartItem->product_id, $cartItem->quantity);
+                    $product = $this->productQuery->getProductById($cartItem->product_id);
+                    $order->addOrderLine($product, $cartItem->quantity);
+                });
 
-            // 3. make payment via payment module
-            $amount = $price * (int)$validated['quantity'];
-            $this->paymentService->pay($orderId, $amount, $validated['payment_method']);
-        });
+                $order->checkout();
 
-        return response()->json(['order_id' => $orderId], Response::HTTP_CREATED);
+                $this->paymentService->pay(
+                    $order->id,
+                    $order->total_amount,
+                    $request->payment_method
+                );
+            });
+        } catch (\Throwable $th) {
+            // return error response
+        }
+
+        return new OrderResource($order);
     }
 
     /**
