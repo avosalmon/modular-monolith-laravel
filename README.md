@@ -1,4 +1,4 @@
-## Modular Monolith Laravel
+# Modular Monolith Laravel
 
 ## System requirements
 Docker is installed on your machine.
