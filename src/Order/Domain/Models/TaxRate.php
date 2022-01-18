@@ -19,6 +19,12 @@ class TaxRate extends Model
         'end_at' => 'datetime',
     ];
 
+    /**
+     * Get the current tax rate.
+     *
+     * @return self
+     * @throws \Laracon\Order\Domain\Exceptions\TaxRateNotFoundException
+     */
     public static function current(): self
     {
         $now = now();
