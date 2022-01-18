@@ -9,9 +9,9 @@ interface PaymentStrategy
     /**
      * Charge the payment and return transaction id.
      *
-     * @param float $amount
+     * @param int $amount
      * @return string
      * @throws \Laracon\Payment\Application\Exceptions\PaymentException
      */
-    public function charge(float $amount): string;
+    public function charge(int $amount): string;
 }

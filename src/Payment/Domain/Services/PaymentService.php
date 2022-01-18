@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Laracon\Payment\Domain\Services;
 
 use Laracon\Payment\Application\Exceptions\InvalidPaymentMethodException;
-use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
-use Laracon\Payment\Domain\Contracts\PaymentStrategy;
-use Laracon\Payment\Infrastructure\Services\PaymentStragety\CreditCard;
-use Laracon\Payment\Infrastructure\Services\PaymentStragety\Paypal;
+use Laracon\Payment\Domain\Contracts\{PaymentServiceInterface, PaymentStrategy};
+use Laracon\Payment\Infrastructure\Services\PaymentStragety\{CreditCard, Paypal};
 
 class PaymentService implements PaymentServiceInterface
 {

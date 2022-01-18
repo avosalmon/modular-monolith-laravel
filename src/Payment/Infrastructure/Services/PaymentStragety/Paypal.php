@@ -11,10 +11,10 @@ class Paypal implements PaymentStrategy
     /**
      * Charge the payment and return transaction id.
      *
-     * @param float $amount
+     * @param int $amount
      * @return string
      */
-    public function charge(float $amount): string
+    public function charge(int $amount): string
     {
         // Call the payment gateway to charge the payment.
 
