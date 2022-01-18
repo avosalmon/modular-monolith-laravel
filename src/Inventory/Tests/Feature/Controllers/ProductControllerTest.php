@@ -7,7 +7,7 @@ use function Pest\Laravel\getJson;
 
 uses(Tests\TestCase::class);
 
-test('index returns paginated response', function () {
+it('returns paginated response', function () {
     Product::factory(30)->create();
 
     getJson('/inventory-module/products?page=2')

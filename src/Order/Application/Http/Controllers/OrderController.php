@@ -16,8 +16,6 @@ use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Domain\Models\CartItem;
 use Laracon\Order\Domain\Models\Cart;
 
-use function Psy\debug;
-
 class OrderController extends Controller
 {
     /**
