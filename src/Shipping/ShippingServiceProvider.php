@@ -30,4 +30,14 @@ class ShippingServiceProvider extends ServiceProvider
 
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'shipping');
     }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->register(EventServiceProvider::class);
+    }
 }

@@ -13,6 +13,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Laracon\Inventory\Contracts\ProductService;
+use Laracon\Order\Contracts\Events\OrderFulfilled;
 use Laracon\Order\Domain\Models\CartItem;
 use Laracon\Order\Domain\Models\Cart;
 
@@ -68,6 +69,8 @@ class OrderController extends Controller
                 'message' => 'An error occurred while processing your order.',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
+        OrderFulfilled::dispatch($order->id);
 
         return new OrderResource($order);
     }

@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 use Laracon\Inventory\Contracts\DataTransferObjects\Product as ProductDto;
 use Laracon\Inventory\Contracts\ProductService;
+use Laracon\Order\Contracts\Events\OrderFulfilled;
 use Laracon\Order\Domain\Models\{Cart, TaxRate};
 use Laracon\Payment\Contracts\PaymentService;
 use Laravel\Sanctum\Sanctum;
@@ -17,6 +19,8 @@ use function Pest\Laravel\{
 uses(Tests\TestCase::class);
 
 it('creates a new order', function () {
+    Event::fake();
+
     TaxRate::factory()->create();
     $user = User::factory()->create();
     $cart = Cart::factory()->create([
@@ -66,4 +70,5 @@ it('creates a new order', function () {
         'id' => $order['id'],
     ]);
     assertDatabaseCount('order_lines', 2);
+    Event::assertDispatched(OrderFulfilled::class, $order['id']);
 });
