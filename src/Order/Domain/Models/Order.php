@@ -17,6 +17,16 @@ class Order extends Model
     protected $orderLines = [];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'user_id',
+        'shipping_address_id',
+    ];
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
@@ -39,7 +49,7 @@ class Order extends Model
     public function addOrderLine(Product $product, int $quantity): void
     {
         $orderLine = new OrderLine([
-            'product_id' => $product->name,
+            'product_id' => $product->id,
             'product_name' => $product->name,
             'price' => $product->price,
             'quantity' => $quantity,

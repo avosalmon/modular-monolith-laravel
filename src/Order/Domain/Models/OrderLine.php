@@ -9,6 +9,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderLine extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'product_id',
+        'product_name',
+        'price',
+        'quantity',
+    ];
+
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
