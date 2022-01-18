@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laracon\Payment\Domain\Exceptions;
+namespace Laracon\Payment\Contracts\Exceptions;
 
 use Exception;
 

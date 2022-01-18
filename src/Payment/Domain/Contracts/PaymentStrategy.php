@@ -11,7 +11,7 @@ interface PaymentStrategy
      *
      * @param int $amount
      * @return string
-     * @throws \Laracon\Payment\Domain\Exceptions\PaymentException
+     * @throws \Laracon\Payment\Contracts\Exceptions\PaymentException
      */
     public function charge(int $amount): string;
 }

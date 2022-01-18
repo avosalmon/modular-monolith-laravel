@@ -7,7 +7,7 @@ namespace Laracon\Order\Application\Http\Controllers;
 use Laracon\Order\Application\Http\Requests\StoreOrderRequest;
 use Laracon\Order\Application\Http\Resources\Order as OrderResource;
 use Laracon\Order\Domain\Models\Order;
-use Laracon\Payment\Domain\Contracts\PaymentServiceInterface;
+use Laracon\Payment\Contracts\PaymentService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -21,12 +21,12 @@ class OrderController extends Controller
      * Create a new controller instance.
      *
      * @param  \Laracon\Inventory\Contracts\ProductService  $productService
-     * @param  \Laracon\Payment\Domain\Contracts\PaymentServiceInterface  $paymentService
+     * @param  \Laracon\Payment\Contracts\PaymentService  $paymentService
      * @return void
      */
     public function __construct(
         private ProductService $productService,
-        private PaymentServiceInterface $paymentService
+        private PaymentService $paymentService
     ) {}
 
     /**
