@@ -40,6 +40,7 @@ class InventoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // manually register bindings
+        // $this->app->bind(ProductServiceContract::class, ProductService::class);
     }
 }
