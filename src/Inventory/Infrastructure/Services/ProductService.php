@@ -5,11 +5,7 @@ declare(strict_types=1);
 namespace Laracon\Inventory\Infrastructure\Services;
 
 use Laracon\Inventory\Contracts\DataTransferObjects\Product as ProductDto;
-use Laracon\Inventory\Contracts\Exceptions\{
-    InactiveProductException,
-    OutOfStockException,
-    ProductNotFoundException
-};
+use Laracon\Inventory\Contracts\Exceptions\{InactiveProductException, OutOfStockException, ProductNotFoundException};
 use Laracon\Inventory\Contracts\ProductService as ProductServiceContract;
 use Laracon\Inventory\Domain\Models\Product;
 
