@@ -39,16 +39,14 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $order = null;
         $cart = Cart::findOrFail($request->cart_id);
+        $order = new Order([
+            'user_id' => $request->user()->id,
+            'shipping_address_id' => $request->shipping_address_id,
+        ]);
 
         try {
             DB::transaction(function () use (&$order, $cart, $request) {
-                $order = new Order([
-                    'user_id' => $request->user()->id,
-                    'shipping_address_id' => $request->shipping_address_id,
-                ]);
-
                 $cart->cartItems()->each(function (CartItem $cartItem) use ($order) {
                     $this->productService->decrementStock($cartItem->product_id, $cartItem->quantity);
                     $product = $this->productService->getProductById($cartItem->product_id);
