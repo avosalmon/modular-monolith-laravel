@@ -30,7 +30,7 @@ class InventoryServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'inventory');
+        // $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'inventory');
     }
 
     /**

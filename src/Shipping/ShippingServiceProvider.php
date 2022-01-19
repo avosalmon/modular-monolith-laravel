@@ -28,7 +28,7 @@ class ShippingServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'shipping');
+        // $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'shipping');
     }
 
     /**

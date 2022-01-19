@@ -19,7 +19,7 @@ class OrderServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'order');
+        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'order');
     }
 
     /**

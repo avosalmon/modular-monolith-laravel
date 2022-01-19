@@ -63,7 +63,7 @@ class OrderController extends Controller
             });
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => 'An error occurred while processing your order.',
+                'message' => trans('order::errors.failed'),
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 

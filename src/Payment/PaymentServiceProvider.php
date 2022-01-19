@@ -30,7 +30,7 @@ class PaymentServiceProvider extends ServiceProvider
 
         // $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'payment');
+        // $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'payment');
     }
 
     /**
