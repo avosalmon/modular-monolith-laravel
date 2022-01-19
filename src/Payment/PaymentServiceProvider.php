@@ -32,4 +32,14 @@ class PaymentServiceProvider extends ServiceProvider
 
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'payment');
     }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 }

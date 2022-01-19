@@ -32,4 +32,14 @@ class InventoryServiceProvider extends ServiceProvider
 
         // $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'inventory');
     }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 }
