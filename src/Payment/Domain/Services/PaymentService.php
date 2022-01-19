@@ -7,7 +7,7 @@ namespace Laracon\Payment\Domain\Services;
 use Laracon\Payment\Contracts\Exceptions\InvalidPaymentMethodException;
 use Laracon\Payment\Contracts\PaymentService as PaymentServiceContract;
 use Laracon\Payment\Domain\Contracts\PaymentStrategy;
-use Laracon\Payment\Infrastructure\Services\PaymentStrategy\{CreditCard, Paypal};
+use Laracon\Payment\Infrastructure\Services\PaymentStrategy\{CreditCard, BankTransfer};
 
 class PaymentService implements PaymentServiceContract
 {
@@ -39,7 +39,7 @@ class PaymentService implements PaymentServiceContract
     {
         $strategy = match ($paymentMethod) {
             'credit-card' => new CreditCard(),
-            'paypal' => new Paypal(),
+            'bank-transfer' => new BankTransfer(),
             default => throw new InvalidPaymentMethodException($paymentMethod)
         };
 

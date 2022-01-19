@@ -7,7 +7,7 @@ namespace Laracon\Payment\Infrastructure\Services\PaymentStrategy;
 use Illuminate\Support\Str;
 use Laracon\Payment\Domain\Contracts\PaymentStrategy;
 
-class Paypal implements PaymentStrategy
+class BankTransfer implements PaymentStrategy
 {
     /**
      * Process the payment and return transaction id.
@@ -20,6 +20,6 @@ class Paypal implements PaymentStrategy
     {
         // Call the payment gateway to process the payment.
 
-        return 'paypal:' . Str::random(16);
+        return 'bank-transfer:' . Str::random(16);
     }
 }
