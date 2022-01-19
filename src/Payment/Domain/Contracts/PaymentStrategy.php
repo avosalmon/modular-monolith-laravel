@@ -7,7 +7,7 @@ namespace Laracon\Payment\Domain\Contracts;
 interface PaymentStrategy
 {
     /**
-     * Charge the payment and return transaction id.
+     * Process the payment and return transaction id.
      *
      * @param int $amount
      * @return string

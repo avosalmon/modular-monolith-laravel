@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Laracon\Payment\Infrastructure\Services\PaymentStrategy;
 
+use Illuminate\Support\Str;
 use Laracon\Payment\Domain\Contracts\PaymentStrategy;
 
 class CreditCard implements PaymentStrategy
 {
     /**
-     * Charge the payment and return transaction id.
+     * Process the payment and return transaction id.
      *
      * @param int $amount
      * @return string
@@ -17,8 +18,8 @@ class CreditCard implements PaymentStrategy
      */
     public function charge(int $amount): string
     {
-        // Call the payment gateway to charge the payment.
+        // Call the payment gateway to process the payment.
 
-        return 'credit card transaction id';
+        return 'credit-card:' . Str::random(16);
     }
 }
