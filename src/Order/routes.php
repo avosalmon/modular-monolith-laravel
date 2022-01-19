@@ -6,5 +6,5 @@ Route::prefix('order-module')
     ->middleware(['api', 'auth:sanctum'])
     ->namespace('Laracon\Order\Application\Http\Controllers')
     ->group(function () {
-        Route::apiResource('orders/', OrderController::class)->except('destroy');
+        Route::apiResource('orders', OrderController::class);
     });
