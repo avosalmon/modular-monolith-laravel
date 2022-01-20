@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
 use Laracon\Order\Domain\Exceptions\EmptyOrderException;
+use Laracon\Inventory\Domain\Models\Product;
 
 class Order extends Model
 {
@@ -24,7 +25,6 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'shipping_address_id',
     ];
 
     /**
