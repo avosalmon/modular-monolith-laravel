@@ -31,5 +31,7 @@ class OrderServiceProvider extends ServiceProvider
     {
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
+
+        // $this->mergeConfigFrom(__DIR__.'/config/order.php', 'order');
     }
 }
