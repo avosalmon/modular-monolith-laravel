@@ -11,7 +11,6 @@ use Laracon\Payment\Contracts\PaymentService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Contracts\Events\OrderFulfilled;
 use Laracon\Order\Domain\Models\CartItem;
@@ -62,9 +61,7 @@ class OrderController extends Controller
                 );
             });
         } catch (\Throwable $th) {
-            return response()->json([
-                'message' => trans('order::errors.failed'),
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            abort(Response::HTTP_BAD_REQUEST, trans('order::errors.failed'));
         }
 
         OrderFulfilled::dispatch($order->id);
