@@ -45,7 +45,7 @@ class OrderController extends Controller
         ]);
 
         try {
-            DB::transaction(function () use (&$order, $cart, $request) {
+            DB::transaction(function () use ($order, $cart, $request) {
                 $cart->cartItems()->each(function (CartItem $cartItem) use ($order) {
                     $this->productService->decrementStock($cartItem->product_id, $cartItem->quantity);
                     $product = $this->productService->getProductById($cartItem->product_id);
