@@ -11,10 +11,8 @@ interface PaymentService
      *
      * @param int  $orderId
      * @param int  $amount
-     * @param string  $paymentMethod
      * @return void
      * @throws \Laracon\Payment\Contracts\Exceptions\PaymentException
-     * @throws \Laracon\Payment\Contracts\Exceptions\InvalidPaymentMethodException
      */
-    public function pay(int $orderId, int $amount, string $paymentMethod): void;
+    public function pay(int $orderId, int $amount): void;
 }

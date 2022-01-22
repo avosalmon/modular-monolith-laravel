@@ -43,7 +43,7 @@ class OrderController extends Controller
         $order = new Order(['user_id' => $request->user()->id]);
 
         try {
-            DB::transaction(function () use ($order, $cart, $request) {
+            DB::transaction(function () use ($order, $cart) {
                 $cart->cartItems()->each(function (CartItem $cartItem) use ($order) {
                     $product = Product::find($cartItem->product_id);
                     $product->decrement('stock', $cartItem->quantity);
@@ -52,11 +52,7 @@ class OrderController extends Controller
 
                 $order->checkout();
 
-                $this->paymentService->pay(
-                    $order->id,
-                    $order->total_amount,
-                    $request->payment_method
-                );
+                $this->paymentService->pay($order->id, $order->total_amount);
             });
         } catch (\Exception $e) {
             abort(Response::HTTP_BAD_REQUEST, trans('order::errors.failed'));

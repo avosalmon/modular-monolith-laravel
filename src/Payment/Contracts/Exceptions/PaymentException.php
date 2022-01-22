@@ -9,7 +9,7 @@ use Exception;
 class PaymentException extends Exception
 {
     public function __construct(
-        public readonly string $paymentMethod,
+        public readonly int $orderId,
         public readonly int $amount
     ) {}
 }
