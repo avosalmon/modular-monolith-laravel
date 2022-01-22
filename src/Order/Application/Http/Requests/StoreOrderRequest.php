@@ -3,7 +3,6 @@
 namespace Laracon\Order\Application\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreOrderRequest extends FormRequest
 {
@@ -26,8 +25,6 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'cart_id' => ['required', 'integer', 'exists:carts,id'],
-            'shipping_address_id' => ['required', 'integer'],
-            'payment_method' => ['required', Rule::in(['credit-card', 'bank-transfer'])],
         ];
     }
 }
