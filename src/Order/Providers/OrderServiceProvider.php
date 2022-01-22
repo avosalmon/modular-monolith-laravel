@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laracon\Order;
+namespace Laracon\Order\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,11 +15,11 @@ class OrderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes.php');
 
-        $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Infrastructure/Database/Migrations');
 
-        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'order');
+        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'order');
     }
 
     /**
@@ -32,6 +32,6 @@ class OrderServiceProvider extends ServiceProvider
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
 
-        // $this->mergeConfigFrom(__DIR__.'/config/order.php', 'order');
+        // $this->mergeConfigFrom(__DIR__.'/../config/order.php', 'order');
     }
 }

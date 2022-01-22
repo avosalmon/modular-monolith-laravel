@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laracon\Inventory;
+namespace Laracon\Inventory\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laracon\Inventory\Contracts\ProductService as ProductServiceContract;
@@ -26,11 +26,11 @@ class InventoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes.php');
 
-        $this->loadMigrationsFrom(__DIR__.'/Infrastructure/Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Infrastructure/Database/Migrations');
 
-        // $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'inventory');
+        // $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'inventory');
     }
 
     /**

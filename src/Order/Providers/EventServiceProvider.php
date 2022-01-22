@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Laracon\Shipping;
+namespace Laracon\Order\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Laracon\Order\Contracts\Events\OrderFulfilled;
-use Laracon\Shipping\Domain\Listeners\NotifyWarehouse;
+use Laracon\Order\Domain\Listeners\HandleOrderShipment;
+use Laracon\Shipping\Contracts\Events\ParcelShipped;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,9 +16,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        OrderFulfilled::class => [
-            NotifyWarehouse::class,
-        ]
+        ParcelShipped::class => [
+            HandleOrderShipment::class,
+        ],
     ];
 
     /**

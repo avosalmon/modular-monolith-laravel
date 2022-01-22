@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laracon\Order;
+namespace Laracon\Order\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laracon\Order\Application\Policies\OrderPolicy;

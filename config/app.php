@@ -176,10 +176,10 @@ return [
         /*
          * Custom Service Providers
          */
-        \Laracon\Order\OrderServiceProvider::class,
-        \Laracon\Payment\PaymentServiceProvider::class,
-        \Laracon\Inventory\InventoryServiceProvider::class,
-        \Laracon\Shipping\ShippingServiceProvider::class,
+        \Laracon\Inventory\Providers\InventoryServiceProvider::class,
+        \Laracon\Order\Providers\OrderServiceProvider::class,
+        \Laracon\Payment\Providers\PaymentServiceProvider::class,
+        \Laracon\Shipping\Providers\ShippingServiceProvider::class,
     ],
 
     /*
