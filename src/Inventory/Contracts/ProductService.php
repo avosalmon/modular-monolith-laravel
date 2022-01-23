@@ -7,15 +7,6 @@ use Laracon\Inventory\Contracts\DataTransferObjects\Product as ProductDto;
 interface ProductService
 {
     /**
-     * Get product by product id.
-     *
-     * @param int $id
-     * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
-     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
-     */
-    public function getProductById(int $productId): ProductDto;
-
-    /**
      * Decrement product stock.
      *
      * @param int $productId
@@ -26,4 +17,13 @@ interface ProductService
      * @throws \Laracon\Inventory\Contracts\Exceptions\InactiveProductException
      */
     public function decrementStock(int $productId, int $quantity): void;
+
+    /**
+     * Get product by product id.
+     *
+     * @param int $id
+     * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
+     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
+     */
+    public function getProductById(int $productId): ProductDto;
 }

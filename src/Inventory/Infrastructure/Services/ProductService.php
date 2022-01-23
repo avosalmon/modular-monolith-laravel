@@ -12,28 +12,6 @@ use Laracon\Inventory\Domain\Models\Product;
 class ProductService implements ProductServiceContract
 {
     /**
-     * Get product by product id.
-     *
-     * @param int $id
-     * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
-     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
-     */
-    public function getProductById(int $productId): ProductDto
-    {
-        $product = Product::find($productId);
-
-        if (!$product) {
-            throw new ProductNotFoundException($productId);
-        }
-
-        return new ProductDto(
-            $product->id,
-            $product->name,
-            $product->price,
-        );
-    }
-
-    /**
      * Decrement product stock.
      *
      * @param int $productId
@@ -60,5 +38,27 @@ class ProductService implements ProductServiceContract
         }
 
         $product->decrement('stock', $quantity);
+    }
+
+    /**
+     * Get product by product id.
+     *
+     * @param int $id
+     * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
+     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
+     */
+    public function getProductById(int $productId): ProductDto
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            throw new ProductNotFoundException($productId);
+        }
+
+        return new ProductDto(
+            $product->id,
+            $product->name,
+            $product->price,
+        );
     }
 }
