@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laracon\Inventory\Contracts\DataTransferObjects\Product;
+use Laracon\Order\Domain\Exceptions\EmptyOrderException;
 
 class Order extends Model
 {
@@ -61,7 +62,7 @@ class Order extends Model
     public function checkout(): void
     {
         if (empty($this->orderLines)) {
-            // throw exception
+            throw new EmptyOrderException();
         }
 
         $this->amount = collect($this->orderLines)->sum(fn (OrderLine $orderLine) =>
