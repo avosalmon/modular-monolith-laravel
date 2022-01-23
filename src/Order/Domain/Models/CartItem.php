@@ -7,6 +7,8 @@ namespace Laracon\Order\Domain\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laracon\Inventory\Domain\Models\Product;
 use Laracon\Order\Infrastructure\Database\Factories\CartItemFactory;
 
 class CartItem extends Model
@@ -37,5 +39,10 @@ class CartItem extends Model
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function product(): HasOne
+    {
+        return $this->hasOne(Product::class);
     }
 }

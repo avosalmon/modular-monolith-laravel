@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Laracon\Inventory\Contracts\ProductService;
-use Laracon\Inventory\Domain\Models\Product;
 use Laracon\Order\Application\Http\Requests\StoreOrderRequest;
 use Laracon\Order\Application\Http\Resources\Order as OrderResource;
 use Laracon\Order\Contracts\Events\OrderFulfilled;
@@ -45,9 +44,8 @@ class OrderController extends Controller
         try {
             DB::transaction(function () use ($order, $cart) {
                 $cart->cartItems()->each(function (CartItem $cartItem) use ($order) {
-                    $product = Product::find($cartItem->product_id);
-                    $product->decrement('stock', $cartItem->quantity);
-                    $order->addOrderLine($product, $cartItem->quantity);
+                    $cartItem->product->decrement('stock', $cartItem->quantity);
+                    $order->addOrderLine($cartItem->product, $cartItem->quantity);
                 });
 
                 $order->checkout();
