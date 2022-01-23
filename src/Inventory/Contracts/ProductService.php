@@ -11,19 +11,19 @@ interface ProductService
      *
      * @param int $id
      * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
-     * @throws \Laracon\Inventory\Contracts\ExceptionsProductNotFoundException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
      */
     public function getProductById(int $productId): ProductDto;
 
     /**
      * Decrement product stock.
      *
-     * @param integer $productId
-     * @param integer $quantity
+     * @param int $productId
+     * @param int $quantity
      * @return void
-     * @throws \Laracon\Inventory\Contracts\ExceptionsProductNotFoundException
-     * @throws \Laracon\Inventory\Contracts\ExceptionsOutOfStockException
-     * @throws \Laracon\Inventory\Contracts\ExceptionsInactiveProductException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\OutOfStockException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\InactiveProductException
      */
     public function decrementStock(int $productId, int $quantity): void;
 }

@@ -16,7 +16,7 @@ class ProductService implements ProductServiceContract
      *
      * @param int $id
      * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
-     * @throws \Laracon\Inventory\Contracts\ExceptionsProductNotFoundException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
      */
     public function getProductById(int $productId): ProductDto
     {
@@ -36,12 +36,12 @@ class ProductService implements ProductServiceContract
     /**
      * Decrement product stock.
      *
-     * @param integer $productId
-     * @param integer $quantity
+     * @param int $productId
+     * @param int $quantity
      * @return void
-     * @throws \Laracon\Inventory\Contracts\ExceptionsProductNotFoundException
-     * @throws \Laracon\Inventory\Contracts\ExceptionsOutOfStockException
-     * @throws \Laracon\Inventory\Contracts\ExceptionsInactiveProductException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\OutOfStockException
+     * @throws \Laracon\Inventory\Contracts\Exceptions\InactiveProductException
      */
     public function decrementStock(int $productId, int $quantity): void
     {
@@ -52,11 +52,11 @@ class ProductService implements ProductServiceContract
         }
 
         if ($product->stock < $quantity) {
-            throw new OutOfStockException($product->id);
+            throw new OutOfStockException($productId);
         }
 
         if (!$product->is_active) {
-            throw new InactiveProductException($product->id);
+            throw new InactiveProductException($productId);
         }
 
         $product->decrement('stock', $quantity);
