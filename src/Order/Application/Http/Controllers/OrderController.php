@@ -38,7 +38,7 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $cart = Cart::findOrFail($request->cart_id);
+        $cart = Cart::with('cartItems')->findOrFail($request->cart_id);
         $order = new Order([
             'user_id' => $request->user()->id,
             'shipping_address_id' => $request->shipping_address_id,
