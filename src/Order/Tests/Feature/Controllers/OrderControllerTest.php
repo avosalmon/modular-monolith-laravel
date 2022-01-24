@@ -58,13 +58,9 @@ it('creates a new order', function () {
 
     Sanctum::actingAs($user);
 
-    $order = postJson('/order-module/orders', [
-        'cart_id' => $cart->id,
-        'shipping_address_id' => 1,
-        'payment_method' => 'credit-card',
-    ])
-    ->assertCreated()
-    ->json('data');
+    $order = postJson('/order-module/orders', ['cart_id' => $cart->id])
+        ->assertCreated()
+        ->json('data');
 
     assertDatabaseHas('orders', [
         'id' => $order['id'],
