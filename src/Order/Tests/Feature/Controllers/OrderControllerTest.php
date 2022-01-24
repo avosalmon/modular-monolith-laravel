@@ -52,9 +52,9 @@ it('creates a new order', function () {
         });
     });
 
-    mock(PaymentService::class, function ($mock) {
-        $mock->shouldReceive('pay')->once();
-    });
+    mock(PaymentService::class)
+        ->shouldReceive('pay')
+        ->once();
 
     Sanctum::actingAs($user);
 

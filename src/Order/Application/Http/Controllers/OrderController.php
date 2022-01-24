@@ -60,7 +60,7 @@ class OrderController extends Controller
                     $request->payment_method
                 );
             });
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             abort(Response::HTTP_BAD_REQUEST, trans('order::errors.failed'));
         }
 
