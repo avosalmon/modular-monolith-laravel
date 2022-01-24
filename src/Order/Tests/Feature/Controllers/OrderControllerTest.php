@@ -2,7 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
-use Laracon\Inventory\Contracts\DataTransferObjects\Product as ProductDto;
+use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
 use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Contracts\Events\OrderFulfilled;
 use Laracon\Order\Domain\Models\{Cart, TaxRate};

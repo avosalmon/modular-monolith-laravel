@@ -2,7 +2,7 @@
 
 namespace Laracon\Inventory\Contracts;
 
-use Laracon\Inventory\Contracts\DataTransferObjects\Product as ProductDto;
+use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
 
 interface ProductService
 {
@@ -22,7 +22,7 @@ interface ProductService
      * Get product by product id.
      *
      * @param int $id
-     * @return \Laracon\Inventory\Contracts\DataTransferObjects\Product
+     * @return \Laracon\Inventory\Contracts\DataTransferObjects\ProductDto
      * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
      */
     public function getProductById(int $productId): ProductDto;

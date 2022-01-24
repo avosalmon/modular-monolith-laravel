@@ -8,7 +8,7 @@ use Laracon\Order\Infrastructure\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laracon\Inventory\Contracts\DataTransferObjects\Product;
+use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
 use Laracon\Order\Domain\Exceptions\EmptyOrderException;
 
 class Order extends Model
@@ -47,7 +47,7 @@ class Order extends Model
         return $this->hasMany(OrderHistory::class);
     }
 
-    public function addOrderLine(Product $product, int $quantity): void
+    public function addOrderLine(ProductDto $product, int $quantity): void
     {
         $orderLine = new OrderLine([
             'product_id' => $product->id,

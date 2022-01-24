@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laracon\Inventory\Contracts\DataTransferObjects;
 
-class Product
+class ProductDto
 {
     public function __construct(
         public readonly int $id,
