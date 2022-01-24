@@ -41,11 +41,6 @@ class Order extends Model
         return $this->hasMany(OrderLine::class);
     }
 
-    public function orderHistories(): HasMany
-    {
-        return $this->hasMany(OrderHistory::class);
-    }
-
     public function addOrderLine(Product $product, int $quantity): void
     {
         $orderLine = new OrderLine([
