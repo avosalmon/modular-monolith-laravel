@@ -7,7 +7,7 @@ namespace Laracon\Inventory\Contracts\DataTransferObjects;
 /**
  * Product DTO implementation in older version of PHP.
  */
-class ProductOld
+class ProductDtoOld
 {
     private int $id;
 
