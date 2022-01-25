@@ -7,7 +7,6 @@ namespace Laracon\Order\Application\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Application\Http\Requests\StoreOrderRequest;
 use Laracon\Order\Application\Http\Resources\Order as OrderResource;
 use Laracon\Order\Contracts\Events\OrderFulfilled;
@@ -21,14 +20,10 @@ class OrderController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Laracon\Inventory\Contracts\ProductService  $productService
      * @param  \Laracon\Payment\Contracts\PaymentService  $paymentService
      * @return void
      */
-    public function __construct(
-        private ProductService $productService,
-        private PaymentService $paymentService
-    ) {}
+    public function __construct(private PaymentService $paymentService) {}
 
     /**
      * Store a newly created resource in storage.
@@ -55,8 +50,6 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             abort(Response::HTTP_BAD_REQUEST, trans('order::errors.failed'));
         }
-
-        OrderFulfilled::dispatch($order->id);
 
         return new OrderResource($order);
     }
