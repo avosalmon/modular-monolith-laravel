@@ -31,6 +31,10 @@ RUN apt-get update \
        php8.1-msgpack php8.1-igbinary php8.1-redis php8.1-swoole \
        php8.1-memcached php8.1-pcov php8.1-xdebug \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
+    && curl -LS https://github.com/qossmic/deptrac/releases/download/0.19.2/deptrac.phar -o deptrac.phar \
+    && chmod +x deptrac.phar \
+    && mv deptrac.phar /usr/local/bin/deptrac \
+    && apt-get install -y graphviz \
     && curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \

@@ -1,0 +1,79 @@
+parameters:
+  paths:
+    - ./app
+    - ./src
+  layers:
+    - name: Illuminate
+      collectors:
+        - type: className
+          regex: Illuminate\\.*
+    - name: Laravel
+      collectors:
+        - type: className
+          regex: Laravel\\.*
+    - name: App
+      collectors:
+        - type: className
+          regex: App\\.*
+    - name: Contract
+      collectors:
+        - type: directory
+          regex: src/[^/]*/Contracts/.*
+    - name: InventoryModule
+      collectors:
+        - type: bool
+          must:
+            - type: className
+              regex: Inventory\\.*
+          must_not:
+            - type: className
+              regex: Inventory\\Contracts\\.*
+    - name: OrderModule
+      collectors:
+        - type: bool
+          must:
+            - type: className
+              regex: Order\\.*
+          must_not:
+            - type: className
+              regex: Order\\Contracts\\.*
+    - name: PaymentModule
+      collectors:
+        - type: bool
+          must:
+            - type: className
+              regex: Payment\\.*
+          must_not:
+            - type: className
+              regex: Payment\\Contracts\\.*
+    - name: ShippingModule
+      collectors:
+        - type: bool
+          must:
+            - type: className
+              regex: Shipping\\.*
+          must_not:
+            - type: className
+              regex: Shipping\\Contracts\\.*
+  ruleset:
+    InventoryModule:
+      - App
+      - Contract
+      - Illuminate
+    OrderModule:
+      - App
+      - Contract
+      - Illuminate
+    PaymentModule:
+      - App
+      - Contract
+      - Illuminate
+    ShippingModule:
+      - App
+      - Contract
+      - Illuminate
+    App:
+      - Illuminate
+      - Laravel
+    Contract:
+      - Illuminate
