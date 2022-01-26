@@ -1,8 +1,16 @@
 parameters:
   paths:
-    - ./app
-    - ./src
+    - ./src/Shipping
   layers:
+    - name: ShippingModule
+      collectors:
+        - type: bool
+          must:
+            - type: className
+              regex: Shipping\\.*
+          must_not:
+            - type: className
+              regex: Shipping\\Contracts\\.*
     - name: App
       collectors:
         - type: className
@@ -15,18 +23,8 @@ parameters:
       collectors:
         - type: className
           regex: Illuminate\\.*
-    - name: Laravel
-      collectors:
-        - type: className
-          regex: Laravel\\.*
   ruleset:
-    App:
+    ShippingModule:
+      - App
+      - Contract
       - Illuminate
-      - Laravel
-    Contract:
-      - Illuminate
-imports:
-  - src/Inventory/deptrac.yaml
-  - src/Order/deptrac.yaml
-  - src/Payment/deptrac.yaml
-  - src/Shipping/deptrac.yaml
