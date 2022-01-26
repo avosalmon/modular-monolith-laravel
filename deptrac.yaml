@@ -1,0 +1,32 @@
+parameters:
+  paths:
+    - ./app
+    - ./src
+  layers:
+    - name: App
+      collectors:
+        - type: className
+          regex: App\\.*
+    - name: Contract
+      collectors:
+        - type: directory
+          regex: src/[^/]*/Contracts/.*
+    - name: Illuminate
+      collectors:
+        - type: className
+          regex: Illuminate\\.*
+    - name: Laravel
+      collectors:
+        - type: className
+          regex: Laravel\\.*
+  ruleset:
+    App:
+      - Illuminate
+      - Laravel
+    Contract:
+      - Illuminate
+imports:
+  - src/Inventory/deptrac.yaml
+  - src/Order/deptrac.yaml
+  - src/Payment/deptrac.yaml
+  - src/Shipping/deptrac.yaml

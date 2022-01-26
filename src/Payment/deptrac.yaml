@@ -1,0 +1,30 @@
+parameters:
+  paths:
+    - ./src/Payment
+  layers:
+    - name: PaymentModule
+      collectors:
+        - type: bool
+          must:
+            - type: className
+              regex: Payment\\.*
+          must_not:
+            - type: className
+              regex: Payment\\Contracts\\.*
+    - name: App
+      collectors:
+        - type: className
+          regex: App\\.*
+    - name: Contract
+      collectors:
+        - type: directory
+          regex: src/[^/]*/Contracts/.*
+    - name: Illuminate
+      collectors:
+        - type: className
+          regex: Illuminate\\.*
+  ruleset:
+    PaymentModule:
+      - App
+      - Contract
+      - Illuminate
