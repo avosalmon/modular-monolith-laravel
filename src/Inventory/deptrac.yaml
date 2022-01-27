@@ -7,18 +7,18 @@ parameters:
         - type: bool
           must:
             - type: className
-              regex: Inventory\\.*
+              regex: Laracon\\Inventory\\.*
           must_not:
             - type: className
-              regex: Inventory\\Contracts\\.*
+              regex: Laracon\\Inventory\\Contracts\\.*
     - name: App
       collectors:
         - type: className
           regex: App\\.*
     - name: Contract
       collectors:
-        - type: directory
-          regex: src/[^/]*/Contracts/.*
+        - type: className
+          regex: Laracon\\[^\\]*\\Contracts\\.*
     - name: Laravel
       collectors:
         - type: className

@@ -9,8 +9,8 @@ parameters:
           regex: App\\.*
     - name: Contract
       collectors:
-        - type: directory
-          regex: src/[^/]*/Contracts/.*
+        - type: className
+          regex: Laracon\\[^\\]*\\Contracts\\.*
     - name: Laravel
       collectors:
         - type: className
