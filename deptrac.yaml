@@ -11,20 +11,15 @@ parameters:
       collectors:
         - type: directory
           regex: src/[^/]*/Contracts/.*
-    - name: Illuminate
-      collectors:
-        - type: className
-          regex: Illuminate\\.*
     - name: Laravel
       collectors:
         - type: className
-          regex: Laravel\\.*
+          regex: (Laravel|Illuminate)\\.*
   ruleset:
     App:
-      - Illuminate
       - Laravel
     Contract:
-      - Illuminate
+      - Laravel
 imports:
   - src/Inventory/deptrac.yaml
   - src/Order/deptrac.yaml

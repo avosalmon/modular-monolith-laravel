@@ -19,12 +19,12 @@ parameters:
       collectors:
         - type: directory
           regex: src/[^/]*/Contracts/.*
-    - name: Illuminate
+    - name: Laravel
       collectors:
         - type: className
-          regex: Illuminate\\.*
+          regex: (Laravel|Illuminate)\\.*
   ruleset:
     InventoryModule:
       - App
       - Contract
-      - Illuminate
+      - Laravel
