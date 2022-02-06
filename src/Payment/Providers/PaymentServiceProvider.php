@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Laracon\Payment\Providers;
 
-use Laracon\Payment\Contracts\PaymentService as PaymentServiceContract;
-use Laracon\Payment\Domain\Services\PaymentService;
 use Illuminate\Support\ServiceProvider;
+use Laracon\Payment\Contracts\PaymentService as PaymentServiceContract;
+use Laracon\Payment\Infrastructure\Services\StripePaymentService;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,7 @@ class PaymentServiceProvider extends ServiceProvider
      * @var array
      */
     public $bindings = [
-        PaymentServiceContract::class => PaymentService::class,
+        PaymentServiceContract::class => StripePaymentService::class,
     ];
 
     /**

@@ -24,7 +24,6 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'shipping_address_id',
     ];
 
     /**
@@ -40,11 +39,6 @@ class Order extends Model
     public function orderLines(): HasMany
     {
         return $this->hasMany(OrderLine::class);
-    }
-
-    public function orderHistories(): HasMany
-    {
-        return $this->hasMany(OrderHistory::class);
     }
 
     public function addOrderLine(ProductDto $product, int $quantity): void
