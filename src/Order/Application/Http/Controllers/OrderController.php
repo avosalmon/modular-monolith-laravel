@@ -51,7 +51,7 @@ class OrderController extends Controller
 
                 $order->checkout();
 
-                $this->paymentService->pay($order->id, $order->total_amount);
+                $this->paymentService->charge($order->id, $order->total_amount);
             });
         } catch (\Exception $e) {
             abort(Response::HTTP_BAD_REQUEST, trans('order::errors.failed'));

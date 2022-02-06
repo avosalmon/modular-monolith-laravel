@@ -14,5 +14,5 @@ interface PaymentService
      * @return void
      * @throws \Laracon\Payment\Contracts\Exceptions\PaymentException
      */
-    public function pay(int $orderId, int $amount): void;
+    public function charge(int $orderId, int $amount): void;
 }
