@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laracon\Inventory\Domain\Models\Product;
+use Laravel\Sanctum\Sanctum;
 
 use function Pest\Laravel\getJson;
 
@@ -9,6 +11,8 @@ uses(Tests\TestCase::class);
 
 it('returns paginated response', function () {
     Product::factory(30)->create();
+
+    Sanctum::actingAs(User::factory()->create());
 
     getJson('/inventory-module/products?page=2')
         ->assertOk()
