@@ -53,7 +53,7 @@ it('creates a new order', function () {
     });
 
     mock(PaymentService::class)
-        ->shouldReceive('pay')
+        ->shouldReceive('charge')
         ->once();
 
     Sanctum::actingAs($user);
