@@ -1,6 +1,7 @@
 # Modular Monolith Laravel
 The sample e-commerce application for Laracon Online Winter 2022.
-You can also find the slides [here](https://speakerdeck.com/avosalmon/modularising-the-monolith-laracon-online-winter-2022).
+- [Laracon Video](https://youtu.be/0Rq-yHAwYjQ?t=4070)
+- [Slides](https://speakerdeck.com/avosalmon/modularising-the-monolith-laracon-online-winter-2022)
 
 ## System requirements
 Docker is installed on your machine.
