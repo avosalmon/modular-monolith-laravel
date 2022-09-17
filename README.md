@@ -48,7 +48,7 @@ Now you can access the app via http://localhost.
 ## Running tests
 
 ```sh
-sail composer test
+sail test
 ```
 
 ## Static code analysis for domain boundaries
