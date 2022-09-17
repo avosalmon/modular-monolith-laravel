@@ -1,0 +1,8 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "no_binary_string": false,
+        "strict_comparison": true,
+        "ternary_to_null_coalescing": true
+    }
+}
