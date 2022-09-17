@@ -23,7 +23,8 @@
         "pestphp/pest-plugin-faker": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.1",
         "pestphp/pest-plugin-mock": "^1.0",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "qossmic/deptrac-shim": "^0.24.0"
     },
     "autoload": {
         "psr-4": {
