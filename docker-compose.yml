@@ -3,7 +3,7 @@ version: '3'
 services:
     app:
         build:
-            context: ./docker
+            context: ./vendor/laravel/sail/runtimes/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
