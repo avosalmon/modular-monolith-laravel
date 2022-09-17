@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Laracon\Order\Domain\Models;
 
-use Laracon\Order\Infrastructure\Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
 use Laracon\Order\Domain\Exceptions\EmptyOrderException;
+use Laracon\Order\Infrastructure\Database\Factories\OrderFactory;
 
 class Order extends Model
 {
@@ -59,8 +59,7 @@ class Order extends Model
             throw new EmptyOrderException();
         }
 
-        $this->amount = collect($this->orderLines)->sum(fn (OrderLine $orderLine) =>
-            $orderLine->subtotal()
+        $this->amount = collect($this->orderLines)->sum(fn (OrderLine $orderLine) => $orderLine->subtotal()
         );
         $this->tax = $this->amount * TaxRate::current()->rate;
         $this->total_amount = $this->amount + $this->tax;

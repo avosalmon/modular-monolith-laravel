@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Laracon\Order\Infrastructure\Database\Factories;
 
-use Laracon\Order\Domain\Models\CartItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Laracon\Order\Domain\Models\Cart;
+use Laracon\Order\Domain\Models\CartItem;
 
 class CartItemFactory extends Factory
 {

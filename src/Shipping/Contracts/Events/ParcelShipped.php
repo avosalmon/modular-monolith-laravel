@@ -15,8 +15,10 @@ class ParcelShipped
     /**
      * Create a new event instance.
      *
-     * @param  int $orderId
+     * @param  int  $orderId
      * @return void
      */
-    public function __construct(public readonly int $orderId) {}
+    public function __construct(public readonly int $orderId)
+    {
+    }
 }

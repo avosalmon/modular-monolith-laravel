@@ -18,7 +18,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         OrderFulfilled::class => [
             NotifyWarehouse::class,
-        ]
+        ],
     ];
 
     /**

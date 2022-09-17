@@ -10,5 +10,6 @@ class ProductDto
         public readonly int $id,
         public readonly string $name,
         public readonly int $price,
-    ) {}
+    ) {
+    }
 }

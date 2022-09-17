@@ -8,5 +8,7 @@ use Exception;
 
 class OutOfStockException extends Exception
 {
-    public function __construct(public readonly int $productId) {}
+    public function __construct(public readonly int $productId)
+    {
+    }
 }

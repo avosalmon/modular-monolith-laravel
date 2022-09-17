@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Laracon\Order\Infrastructure\Database\Factories;
 
-use Laracon\Order\Domain\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laracon\Order\Domain\Models\Order;
 
 class OrderFactory extends Factory
 {

@@ -2,8 +2,8 @@
 
 namespace Laracon\Inventory\Infrastructure\Database\Seeders;
 
-use Laracon\Inventory\Domain\Models\Product;
 use Illuminate\Database\Seeder;
+use Laracon\Inventory\Domain\Models\Product;
 
 class ProductSeeder extends Seeder
 {
