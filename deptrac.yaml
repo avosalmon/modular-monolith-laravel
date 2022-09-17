@@ -75,3 +75,11 @@ parameters:
       - Contracts
       - Vendor
       - Common
+  # formatters config is required to generate graphical diagrams using graphviz.
+  # Default values should be used according to https://github.com/qossmic/deptrac/issues/949,
+  # however, the command still fails if no formatters config is specified.
+  formatters:
+    graphviz:
+      hidden_layers: []
+      groups: []
+      point_to_groups: false
