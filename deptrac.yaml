@@ -1,27 +1,77 @@
 parameters:
   paths:
-    - ./app
     - ./src
+    - ./app
   layers:
-    - name: App
+    - name: Common
       collectors:
-        - type: className
-          regex: App\\.*
-    - name: Contract
+        - type: directory
+          regex: ./app/(Models|Http/Controllers)/.*
+    - name: Contracts
       collectors:
-        - type: className
-          regex: Laracon\\[^\\]*\\Contracts\\.*
-    - name: Laravel
+        - type: directory
+          regex: .*/Contracts/.*
+    - name: Vendor
       collectors:
-        - type: className
-          regex: (Laravel|Illuminate)\\.*
+        - type: bool
+          must_not:
+            - type: directory
+              regex: ./(src|app)/.*
+    - name: Inventory
+      collectors:
+        - type: bool
+          must:
+            - type: directory
+              regex: ./src/Inventory/.*
+          must_not:
+            - type: directory
+              regex: ./src/Inventory/Contracts/.*
+    - name: Order
+      collectors:
+        - type: bool
+          must:
+            - type: directory
+              regex: ./src/Order/.*
+          must_not:
+            - type: directory
+              regex: ./src/Order/Contracts/.*
+    - name: Payment
+      collectors:
+        - type: bool
+          must:
+            - type: directory
+              regex: ./src/Payment/.*
+          must_not:
+            - type: directory
+              regex: ./src/Payment/Contracts/.*
+    - name: Shipping
+      collectors:
+        - type: bool
+          must:
+            - type: directory
+              regex: ./src/Shipping/.*
+          must_not:
+            - type: directory
+              regex: ./src/Shipping/Contracts/.*
   ruleset:
-    App:
-      - Laravel
-    Contract:
-      - Laravel
-imports:
-  - src/Inventory/deptrac.yaml
-  - src/Order/deptrac.yaml
-  - src/Payment/deptrac.yaml
-  - src/Shipping/deptrac.yaml
+    Common:
+      - Vendor
+    Contracts:
+      - Vendor
+      - Common
+    Inventory:
+      - Contracts
+      - Vendor
+      - Common
+    Order:
+      - Contracts
+      - Vendor
+      - Common
+    Payment:
+      - Contracts
+      - Vendor
+      - Common
+    Shipping:
+      - Contracts
+      - Vendor
+      - Common
