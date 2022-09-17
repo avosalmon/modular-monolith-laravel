@@ -56,10 +56,10 @@ sail composer test
 
 You can run `deptrac` with the command below.
 ```sh
-sail exec app deptrac
+sail exec app ./vendor/bin/deptrac
 ```
 
 You can also visualize the dependency graph by exporting the analysis result as an image.
 ```sh
-sail exec app deptrac --formatter=graphviz-image --output="./deptrac.png"
+sail exec app ./vendor/bin/deptrac --formatter=graphviz-image --output="./deptrac.png"
 ```
