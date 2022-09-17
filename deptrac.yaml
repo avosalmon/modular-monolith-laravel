@@ -6,7 +6,7 @@ parameters:
     - name: Common
       collectors:
         - type: directory
-          regex: ./app/(Models|Http/Controllers)/.*
+          regex: ./app/.*
     - name: Contracts
       collectors:
         - type: directory
