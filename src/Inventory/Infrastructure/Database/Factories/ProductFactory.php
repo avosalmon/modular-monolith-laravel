@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Laracon\Inventory\Infrastructure\Database\Factories;
 
-use Laracon\Inventory\Domain\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laracon\Inventory\Domain\Models\Product;
 
 class ProductFactory extends Factory
 {

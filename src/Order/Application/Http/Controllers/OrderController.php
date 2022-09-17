@@ -28,7 +28,8 @@ class OrderController extends Controller
     public function __construct(
         private ProductService $productService,
         private PaymentService $paymentService
-    ) {}
+    ) {
+    }
 
     /**
      * Store a newly created resource in storage.

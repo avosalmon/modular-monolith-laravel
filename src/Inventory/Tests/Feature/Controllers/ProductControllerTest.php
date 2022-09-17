@@ -4,7 +4,6 @@ use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laracon\Inventory\Domain\Models\Product;
 use Laravel\Sanctum\Sanctum;
-
 use function Pest\Laravel\getJson;
 
 uses(Tests\TestCase::class);
@@ -16,8 +15,7 @@ it('returns paginated response', function () {
 
     getJson('/inventory-module/products?page=2')
         ->assertOk()
-        ->assertJson(fn (AssertableJson $json) =>
-            $json->has('data', 10)
+        ->assertJson(fn (AssertableJson $json) => $json->has('data', 10)
                 ->has('links')
                 ->has('meta')
                 ->where('meta.per_page', 10)

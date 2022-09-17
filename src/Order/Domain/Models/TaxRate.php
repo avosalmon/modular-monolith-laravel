@@ -37,6 +37,7 @@ class TaxRate extends Model
      * Get the current tax rate.
      *
      * @return self
+     *
      * @throws \Laracon\Order\Domain\Exceptions\TaxRateNotFoundException
      */
     public static function current(): self
@@ -47,7 +48,7 @@ class TaxRate extends Model
             ->where('end_at', '>=', $now)
             ->first();
 
-        if (!$rate) {
+        if (! $rate) {
             throw new TaxRateNotFoundException();
         }
 

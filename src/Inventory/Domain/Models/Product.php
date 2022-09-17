@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Laracon\Inventory\Domain\Models;
 
-use Laracon\Inventory\Infrastructure\Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laracon\Inventory\Infrastructure\Database\Factories\ProductFactory;
 
 class Product extends Model
 {

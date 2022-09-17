@@ -5,16 +5,14 @@ use Illuminate\Support\Facades\Event;
 use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
 use Laracon\Inventory\Contracts\ProductService;
 use Laracon\Order\Contracts\Events\OrderFulfilled;
-use Laracon\Order\Domain\Models\{Cart, TaxRate};
+use Laracon\Order\Domain\Models\Cart;
+use Laracon\Order\Domain\Models\TaxRate;
 use Laracon\Payment\Contracts\PaymentService;
 use Laravel\Sanctum\Sanctum;
-
-use function Pest\Laravel\{
-    assertDatabaseCount,
-    assertDatabaseHas,
-    mock,
-    postJson,
-};
+use function Pest\Laravel\assertDatabaseCount;
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\mock;
+use function Pest\Laravel\postJson;
 
 uses(Tests\TestCase::class);
 

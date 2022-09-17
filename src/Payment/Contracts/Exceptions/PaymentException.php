@@ -11,5 +11,6 @@ class PaymentException extends Exception
     public function __construct(
         public readonly int $orderId,
         public readonly int $amount
-    ) {}
+    ) {
+    }
 }

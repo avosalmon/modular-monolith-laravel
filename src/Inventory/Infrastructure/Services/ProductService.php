@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Laracon\Inventory\Infrastructure\Services;
 
 use Laracon\Inventory\Contracts\DataTransferObjects\ProductDto;
-use Laracon\Inventory\Contracts\Exceptions\{InactiveProductException, OutOfStockException, ProductNotFoundException};
+use Laracon\Inventory\Contracts\Exceptions\InactiveProductException;
+use Laracon\Inventory\Contracts\Exceptions\OutOfStockException;
+use Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException;
 use Laracon\Inventory\Contracts\ProductService as ProductServiceContract;
 use Laracon\Inventory\Domain\Models\Product;
 
@@ -14,9 +16,10 @@ class ProductService implements ProductServiceContract
     /**
      * Decrement product stock.
      *
-     * @param int $productId
-     * @param int $quantity
+     * @param  int  $productId
+     * @param  int  $quantity
      * @return void
+     *
      * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
      * @throws \Laracon\Inventory\Contracts\Exceptions\OutOfStockException
      * @throws \Laracon\Inventory\Contracts\Exceptions\InactiveProductException
@@ -25,7 +28,7 @@ class ProductService implements ProductServiceContract
     {
         $product = Product::find($productId);
 
-        if (!$product) {
+        if (! $product) {
             throw new ProductNotFoundException($productId);
         }
 
@@ -33,7 +36,7 @@ class ProductService implements ProductServiceContract
             throw new OutOfStockException($productId);
         }
 
-        if (!$product->is_active) {
+        if (! $product->is_active) {
             throw new InactiveProductException($productId);
         }
 
@@ -43,15 +46,16 @@ class ProductService implements ProductServiceContract
     /**
      * Get product by product id.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Laracon\Inventory\Contracts\DataTransferObjects\ProductDto
+     *
      * @throws \Laracon\Inventory\Contracts\Exceptions\ProductNotFoundException
      */
     public function getProductById(int $productId): ProductDto
     {
         $product = Product::find($productId);
 
-        if (!$product) {
+        if (! $product) {
             throw new ProductNotFoundException($productId);
         }
 
